@@ -29,17 +29,20 @@ def main():
 def about_page():
 	return "Please subscribe  Artificial Intelligence Hub..!!!"
 
-@app.route("/submit", methods = ['GET', 'POST'])
+@app.route("/submit", methods=['GET', 'POST'])
 def get_output():
-	if request.method == 'POST':
-		img = request.files['my_image']
+    if request.method == 'POST':
+        img = request.files['my_image']
 
-		img_path = "static/" + img.filename
-		img.save(img_path)
+        img_path = "static/" + img.filename
+        img.save(img_path)
 
-		p = predict_label(img_path)
+        p = predict_label(img_path)
 
-	return render_template("index.html", prediction = p, img_path = img_path)
+        # Itt a submit.html sablont rendereljük
+        return render_template("submit.html", prediction=p, img_path=img_path)
+    return render_template("index.html")
+
 
 
 if __name__ =='__main__':

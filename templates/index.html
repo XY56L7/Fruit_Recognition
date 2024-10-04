@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 200px;
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fruit Recognition</h1>
+    <div class="container">
+        <form method="POST" action="/submit" enctype="multipart/form-data">
+            <input type="file" name="my_image" accept="image/*" required>
+            <br>
+            <button type="submit">Upload Image</button>
+        </form>
+        
+        {% if prediction %}
+            <div class="result">
+                <p>Predicted Fruit: {{ prediction }}</p>
+            </div>
+            <img src="{{ img_path }}" alt="Uploaded Image">
+        {% endif %}
+    </div>
+</body>
+</html>
